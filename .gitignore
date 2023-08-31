@@ -24,4 +24,8 @@
 # Go workspace file
 go.work
 
+# Database JSON file
+
+db.json
+
 # End of https://www.toptal.com/developers/gitignore/api/go
