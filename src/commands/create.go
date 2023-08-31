@@ -15,6 +15,7 @@ var create = &cobra.Command{
 			fmt.Println(utils.GetErrorColor("Por favor, informe o conteúdo da nota."))
 			os.Exit(1)
 		}
+		fmt.Println(utils.GetSuccessColor("Nota cadastrada com sucesso!"))
 	},
 }
 
