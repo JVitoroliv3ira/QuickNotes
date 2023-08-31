@@ -15,7 +15,8 @@ func Save(note types.Note) (types.Note, error) {
 	if err != nil {
 		return note, err
 	}
-	note.Id = strconv.Itoa(len(notes.Data) + 1)
+	notes.CurrentId = notes.CurrentId + 1
+	note.Id = strconv.Itoa(notes.CurrentId)
 	notes.Data[note.Id] = note
 	err = persist(notes)
 	return note, err
