@@ -22,6 +22,14 @@ func Save(note types.Note) (types.Note, error) {
 	return note, err
 }
 
+func FindById(id string) (types.Note, error) {
+	notes, err := FindAll()
+	if err != nil {
+		return types.Note{}, err
+	}
+	return notes.Data[id], nil
+}
+
 func FindAll() (types.Notes, error) {
 	var notes types.Notes
 	file, err := utils.Open(fileName)
