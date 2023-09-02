@@ -18,6 +18,7 @@ func main() {
 		commands.GetListCommand(),
 		commands.GetCopyCommand(),
 		commands.GetRemoveCommand(),
+		commands.GetClearCommand(),
 	)
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
