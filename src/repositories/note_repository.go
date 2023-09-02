@@ -50,6 +50,19 @@ func FindAll() (types.Notes, error) {
 	return notes, nil
 }
 
+func DeleteById(id string) error {
+	notes, err := FindAll()
+	if err != nil {
+		return nil
+	}
+	_, exists := notes.Data[id]
+	if !exists {
+		return fmt.Errorf("A nota com o ID %s não foi encontrada", id)
+	}
+	delete(notes.Data, id)
+	return persist(notes)
+}
+
 func persist(notes types.Notes) error {
 	file, err := os.Create(fileName)
 	if err != nil {
