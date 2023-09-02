@@ -63,6 +63,18 @@ func DeleteById(id string) error {
 	return persist(notes)
 }
 
+func DeleteAll() error {
+	notes, err := FindAll()
+	if err != nil {
+		return err
+	}
+	for key := range notes.Data {
+		delete(notes.Data, key)
+	}
+	notes.CurrentId = 0
+	return persist(notes)
+}
+
 func persist(notes types.Notes) error {
 	file, err := os.Create(fileName)
 	if err != nil {
