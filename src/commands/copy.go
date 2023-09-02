@@ -17,14 +17,19 @@ var cp = &cobra.Command{
 			fmt.Println(utils.GetErrorColor("Informe o identificador da nota que você deseja copiar."))
 			os.Exit(1)
 		}
+
 		note, err := repositories.FindById(args[0])
 		if err != nil {
-			panic(err)
+			fmt.Println(utils.GetErrorColor("Erro ao buscar a nota: " + err.Error()))
+			os.Exit(1)
 		}
+
 		err = clipboard.WriteAll(note.Text)
 		if err != nil {
-			panic(err)
+			fmt.Println(utils.GetErrorColor("Erro ao copiar a nota para a área de transferência: " + err.Error()))
+			os.Exit(1)
 		}
+
 		fmt.Println(utils.GetSuccessColor("Nota copiada para a área de transferência com sucesso"))
 	},
 }
