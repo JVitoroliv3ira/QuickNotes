@@ -40,7 +40,7 @@ func FindAll() (types.Notes, error) {
 	var notes types.Notes
 	file, err := utils.Open(fileName)
 	if err != nil {
-		return notes, nil
+		return notes, err
 	}
 	defer file.Close()
 	err = json.NewDecoder(file).Decode(&notes)
@@ -53,13 +53,25 @@ func FindAll() (types.Notes, error) {
 func DeleteById(id string) error {
 	notes, err := FindAll()
 	if err != nil {
-		return nil
+		return err
 	}
 	_, exists := notes.Data[id]
 	if !exists {
 		return fmt.Errorf("A nota com o ID %s não foi encontrada", id)
 	}
 	delete(notes.Data, id)
+	return persist(notes)
+}
+
+func DeleteAll() error {
+	notes, err := FindAll()
+	if err != nil {
+		return err
+	}
+	for key := range notes.Data {
+		delete(notes.Data, key)
+	}
+	notes.CurrentId = 0
 	return persist(notes)
 }
 
