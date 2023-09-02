@@ -40,7 +40,7 @@ func FindAll() (types.Notes, error) {
 	var notes types.Notes
 	file, err := utils.Open(fileName)
 	if err != nil {
-		return notes, nil
+		return notes, err
 	}
 	defer file.Close()
 	err = json.NewDecoder(file).Decode(&notes)
@@ -53,7 +53,7 @@ func FindAll() (types.Notes, error) {
 func DeleteById(id string) error {
 	notes, err := FindAll()
 	if err != nil {
-		return nil
+		return err
 	}
 	_, exists := notes.Data[id]
 	if !exists {
