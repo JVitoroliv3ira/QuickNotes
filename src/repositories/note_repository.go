@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"quick_notes/src/types"
 	"quick_notes/src/utils"
@@ -27,7 +28,12 @@ func FindById(id string) (types.Note, error) {
 	if err != nil {
 		return types.Note{}, err
 	}
-	return notes.Data[id], nil
+
+	note, exists := notes.Data[id]
+	if !exists {
+		return types.Note{}, fmt.Errorf("A nota com o ID %s não foi encontrada", id)
+	}
+	return note, nil
 }
 
 func FindAll() (types.Notes, error) {
