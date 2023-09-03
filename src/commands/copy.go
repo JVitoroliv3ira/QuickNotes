@@ -5,7 +5,7 @@ import (
 	"github.com/atotto/clipboard"
 	"github.com/spf13/cobra"
 	"os"
-	"quick_notes/src/repositories"
+	"quick_notes/src/services"
 	"quick_notes/src/utils"
 )
 
@@ -18,7 +18,7 @@ var cp = &cobra.Command{
 			os.Exit(1)
 		}
 
-		note, err := repositories.FindById(args[0])
+		note, err := services.FindById(args[0])
 		if err != nil {
 			fmt.Println(utils.GetErrorColor("Erro ao buscar a nota: " + err.Error()))
 			os.Exit(1)
