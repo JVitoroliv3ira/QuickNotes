@@ -7,6 +7,7 @@ import (
 	"quick_notes/src/services"
 	"quick_notes/src/types"
 	"quick_notes/src/utils"
+	"strings"
 )
 
 var create = &cobra.Command{
@@ -17,7 +18,7 @@ var create = &cobra.Command{
 			fmt.Println(utils.GetErrorColor("Por favor, informe o conteúdo da nota."))
 			os.Exit(1)
 		}
-		_, err := services.Create(types.Note{Text: args[0]})
+		_, err := services.Create(types.Note{Text: strings.Join(args, " ")})
 		if err != nil {
 			fmt.Println(utils.GetErrorColor("Ocorreu um erro inesperado durante a criação da nota: " + err.Error()))
 			os.Exit(1)
