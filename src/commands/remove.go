@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
-	"quick_notes/src/repositories"
+	"quick_notes/src/services"
 	"quick_notes/src/utils"
 )
 
@@ -16,7 +16,7 @@ var remove = &cobra.Command{
 			fmt.Println(utils.GetErrorColor("Informe o identificador da nota que você deseja deletar."))
 			os.Exit(1)
 		}
-		err := repositories.DeleteById(args[0])
+		err := services.DeleteById(args[0])
 		if err != nil {
 			fmt.Println(utils.GetErrorColor("Erro ao deletar a nota: " + err.Error()))
 			os.Exit(1)

@@ -8,3 +8,19 @@ import (
 func Create(note types.Note) (types.Note, error) {
 	return repositories.Save(note)
 }
+
+func ListAll() (types.Notes, error) {
+	return repositories.FindAll()
+}
+
+func FindById(id string) (types.Note, error) {
+	return repositories.FindById(id)
+}
+
+func DeleteById(id string) error {
+	return repositories.DeleteById(id)
+}
+
+func DeleteAll() error {
+	return repositories.DeleteAll()
+}
