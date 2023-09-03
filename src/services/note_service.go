@@ -12,3 +12,7 @@ func Create(note types.Note) (types.Note, error) {
 func ListAll() (types.Notes, error) {
 	return repositories.FindAll()
 }
+
+func FindById(id string) (types.Note, error) {
+	return repositories.FindById(id)
+}
