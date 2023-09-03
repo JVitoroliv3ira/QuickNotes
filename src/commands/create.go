@@ -19,7 +19,7 @@ var create = &cobra.Command{
 		}
 		_, err := services.Create(types.Note{Text: args[0]})
 		if err != nil {
-			fmt.Println(utils.GetErrorColor("Ocorreu um erro inesperado durante a criação da nota."))
+			fmt.Println(utils.GetErrorColor("Ocorreu um erro inesperado durante a criação da nota: " + err.Error()))
 			os.Exit(1)
 		}
 		fmt.Println(utils.GetSuccessColor("Nota cadastrada com sucesso!"))
