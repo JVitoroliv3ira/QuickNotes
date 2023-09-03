@@ -16,3 +16,7 @@ func ListAll() (types.Notes, error) {
 func FindById(id string) (types.Note, error) {
 	return repositories.FindById(id)
 }
+
+func DeleteById(id string) error {
+	return repositories.DeleteById(id)
+}
