@@ -38,6 +38,10 @@ func FindById(id string) (types.Note, error) {
 
 func FindAll() (types.Notes, error) {
 	var notes types.Notes
+	err := utils.CreateIfNotExists(fileName)
+	if err != nil {
+		return notes, err
+	}
 	file, err := utils.Open(fileName)
 	if err != nil {
 		return notes, err
