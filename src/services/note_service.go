@@ -20,3 +20,7 @@ func FindById(id string) (types.Note, error) {
 func DeleteById(id string) error {
 	return repositories.DeleteById(id)
 }
+
+func DeleteAll() error {
+	return repositories.DeleteAll()
+}
